@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Siddhartha ✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Palatino', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #2d1b4e 50%, #1a1a2e 100%);
+            background-size: 400% 400%;
+            animation: galaxyShift 20s ease infinite;
+            color: #f0e6ff;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        @keyframes galaxyShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Starfield Background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Floating Particles */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .heart-particle {
+            color: #ff6b9d;
+            font-size: 12px;
+            animation: floatUp 4s ease-in infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Music Control */
+        .music-trigger {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffd6e8;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .music-trigger:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .music-trigger.playing {
+            animation: musicPulse 2s ease infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% { box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3); }
+            50% { box-shadow: 0 4px 25px rgba(255, 107, 157, 0.6); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Title Page */
+        .title-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .title-page h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #ffd6e8, #c9b3ff, #ffd6e8);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: gradientFlow 3s ease infinite;
+            letter-spacing: 2px;
+        }
+
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .title-page p {
+            font-size: 1.4rem;
+            color: #e8d5ff;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 20px auto;
+            opacity: 0.9;
+        }
+
+        .scroll-hint {
+            margin-top: 60px;
+            font-size: 1rem;
+            color: #c9b3ff;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Letter Envelope */
+        .letter-envelope {
+            margin: 80px auto;
+            perspective: 1000px;
+            max-width: 500px;
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #fff5f8, #ffe8f0);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 40px rgba(255, 107, 157, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid rgba(255, 182, 193, 0.5);
+        }
+
+        .envelope.locked {
+            opacity: 0.4;
+            pointer-events: none;
+            filter: grayscale(1);
+        }
+
+        .envelope:not(.locked):hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 15px 50px rgba(255, 107, 157, 0.5);
+        }
+
+        .envelope-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            animation: envelopePulse 2s ease infinite;
+        }
+
+        @keyframes envelopePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .envelope-title {
+            font-size: 1.5rem;
+            color: #8b4789;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .envelope-subtitle {
+            font-size: 1rem;
+            color: #a86ba8;
+            font-style: italic;
+        }
+
+        .lock-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: #999;
+        }
+
+        /* Letter Content */
+        .letter-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 60px 50px;
+            margin: 40px auto;
+            max-width: 800px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            color: #2d1b4e;
+            line-height: 2;
+            font-size: 1.15rem;
+            position: relative;
+            animation: letterOpen 0.8s ease;
+        }
+
+        @keyframes letterOpen {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) rotateX(90deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotateX(0deg);
+            }
+        }
+
+        .letter-content.active {
+            display: block;
+        }
+
+        .letter-content h2 {
+            color: #8b4789;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid #ffc9d9;
+            padding-bottom: 15px;
+        }
+
+        .letter-content p {
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .letter-content .signature {
+            text-align: right;
+            margin-top: 40px;
+            font-style: italic;
+            color: #a86ba8;
+            font-size: 1.3rem;
+        }
+
+        /* Resolution List */
+        .resolution-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resolution-list li {
+            background: linear-gradient(135deg, #fff5f8, #f0e6ff);
+            margin: 15px 0;
+            padding: 20px 25px;
+            border-radius: 15px;
+            border-left: 4px solid #ff6b9d;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .resolution-list li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+        }
+
+        .resolution-list li::before {
+            content: '♡';
+            position: absolute;
+            left: -15px;
+            color: #ff6b9d;
+            font-size: 1.5rem;
+        }
+
+        /* Image Gallery */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #3d2d5f, #5c4a7e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(10px);
+            transition: filter 0.6s ease;
+        }
+
+        .gallery-item.revealed img {
+            filter: blur(0);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            color: #ffd6e8;
+            font-style: italic;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .placeholder-icon {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Message in Bottle */
+        .message-bottle {
+            position: fixed;
+            bottom: 50px;
+            left: 50px;
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+            z-index: 100;
+            animation: bottleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes bottleFloat {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .bottle-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.98);
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            z-index: 1001;
+            color: #2d1b4e;
+            text-align: center;
+            animation: bottleReveal 0.6s ease;
+        }
+
+        @keyframes bottleReveal {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .bottle-message.active {
+            display: block;
+        }
+
+        .bottle-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #999;
+        }
+
+        /* Final Frame */
+        .final-frame {
+            display: none;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .final-frame.active {
+            display: flex;
+            animation: frameAppear 2s ease;
+        }
+
+        @keyframes frameAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .empty-frame {
+            width: 400px;
+            height: 500px;
+            border: 15px solid #f0e6ff;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(201, 179, 255, 0.1));
+            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4), inset 0 0 30px rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: frameGlow 3s ease infinite;
+        }
+
+        @keyframes frameGlow {
+            0%, 100% {
+                box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4), inset 0 0 30px rgba(255, 255, 255, 0.1);
+            }
+            50% {
+                box-shadow: 0 25px 70px rgba(255, 107, 157, 0.6), inset 0 0 40px rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        .frame-text {
+            font-size: 1.8rem;
+            color: #e8d5ff;
+            margin-top: 50px;
+            font-style: italic;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        /* Clickable Hearts */
+        .floating-heart {
+            position: fixed;
+            font-size: 2rem;
+            color: #ff6b9d;
+            cursor: pointer;
+            animation: heartFloat 4s ease-in-out infinite;
+            z-index: 50;
+            transition: transform 0.2s ease;
+        }
+
+        .floating-heart:hover {
+            transform: scale(1.3);
+        }
+
+        @keyframes heartFloat {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            75% {
+                transform: translateY(-10px) translateX(-10px);
+            }
+        }
+
+        /* Sparkle Effect */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+            animation: sparkleEffect 0.8s ease-out forwards;
+        }
+
+        @keyframes sparkleEffect {
+            0% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2) rotate(180deg);
+            }
+        }
+
+        /* NEW STYLES: Open When Vault & Touch Button */
+        .pill-btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #c9b3ff;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 5px;
+            font-family: inherit;
+        }
+        .pill-btn:hover {
+            background: #ff6b9d;
+            border-color: #ff6b9d;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+        }
+
+        .fingerprint-btn {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px dashed #ff6b9d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            background: rgba(255, 107, 157, 0.05);
+        }
+        .fingerprint-btn:active, .fingerprint-btn.holding {
+            background: rgba(255, 107, 157, 0.2);
+            transform: scale(0.95);
+            border-style: solid;
+            box-shadow: 0 0 30px #ff6b9d;
+            animation: heartbeat 1.2s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(0.95); }
+            15% { transform: scale(1.1); }
+            30% { transform: scale(0.95); }
+            45% { transform: scale(1.1); }
+            60% { transform: scale(0.95); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title-page h1 {
+                font-size: 2.5rem;
+            }
+            
+            .letter-content {
+                padding: 40px 30px;
+                font-size: 1rem;
+            }
+            
+            .empty-frame {
+                width: 300px;
+                height: 400px;
+            }
+            
+            .music-trigger {
+                top: 15px;
+                right: 15px;
+                font-size: 12px;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Starfield -->
+    <div class="stars" id="starfield"></div>
+
+    <!-- Music Control -->
+    <div class="music-trigger" id="musicTrigger">
+        Tap to play the song I associate with you 🎧
+    </div>
+
+    <!-- UPDATED: Music file with single extension -->
+    <audio id="bgMusic" loop>
+        <source src="mann.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Hearts -->
+    <div class="floating-heart" style="top: 20%; left: 10%;">❤️</div>
+    <div class="floating-heart" style="top: 60%; right: 15%;">💕</div>
+    <div class="floating-heart" style="top: 40%; left: 80%;">💖</div>
+
+    <!-- Message in Bottle -->
+    <div class="message-bottle" id="bottleIcon">
+        🍾
+    </div>
+
+    <div class="bottle-message" id="bottleMessage">
+        <div class="bottle-close" onclick="closeBottle()">✕</div>
+        <h3 style="color: #8b4789; margin-bottom: 20px;">A secret for you...</h3>
+        <p style="line-height: 1.8; font-size: 1.1rem;">
+            I've already imagined us walking together in rain. I've already heard your laugh echo in my favorite café. I've already felt your hand in mine on streets we haven't visited yet.
+            <br><br>
+            You're not just my future, Siddhartha.
+            <br>
+            You're my present that hasn't arrived yet.
+        </p>
+    </div>
+
+    <div class="container">
+        <!-- Title Page -->
+        <div class="title-page">
+            <h1>For You, Siddhartha</h1>
+            <p>
+                This is not just a New Year gift.<br>
+                This is a love letter.<br>
+                This is a promise wrapped in stardust.<br>
+                This is me saying: I'm here, and I'm not going anywhere.
+            </p>
+            <div class="scroll-hint">↓ Open the letters below ↓</div>
+        </div>
+
+        <!-- Letter 1: Personal Letter -->
+        <div class="letter-envelope" data-letter="1">
+            <div class="envelope" onclick="openLetter(1)">
+                <div class="envelope-icon">💌</div>
+                <div class="envelope-title">A Letter Just For You</div>
+                <div class="envelope-subtitle">Click to open</div>
+            </div>
+        </div>
+
+        <div class="letter-content" id="letter1">
+            <h2>My Siddhartha,</h2>
+            <p>
+                I'm writing this in the space between what we are now and what we'll become. And I need you to know something — you've changed everything for me. Not in loud, obvious ways, but in the quiet ones. The way I think about tomorrow. The way I smile at my phone. The way distance stopped feeling like an ending and started feeling like just... waiting.
+            </p>
+            <p>
+                I know we haven't stood next to each other yet. I know we haven't taken a single photograph together. But Siddhartha, I've memorized the sound of your voice. I've learned the rhythm of your thoughts. I know what makes you laugh, what makes you go quiet, what makes you feel like yourself. And that? That feels more real than any picture ever could.
+            </p>
+            <p>
+                This year, I want us to stop counting kilometers. I want us to start counting moments. The first time we'll look at each other without a screen between us. The first coffee we'll share. The first time I'll hear you laugh not through a speaker, but right there, next to me. Those moments are coming. I feel it.
+            </p>
+            <p>
+                And until then? I'm here. Loving you from wherever I am. Choosing you every single day. Because you're not just someone I'm waiting for, Siddhartha. You're someone I've already chosen. Distance doesn't change that. Nothing does.
+            </p>
+            <p>
+                Thank you for being patient with this. With us. Thank you for making me believe that love doesn't need proximity to be real. Thank you for being exactly who you are.
+            </p>
+            <div class="signature">
+                Always yours,<br>
+                Kashish ✨
+            </div>
+        </div>
+
+        <!-- Letter 2: Resolutions -->
+        <div class="letter-envelope" data-letter="2">
+            <div class="envelope locked" onclick="openLetter(2)">
+                <div class="lock-icon">🔒</div>
+                <div class="envelope-icon">💌</div>
+                <div class="envelope-title">Our Resolutions Together</div>
+                <div class="envelope-subtitle">Locked until previous letter is opened</div>
+            </div>
+        </div>
+
+        <div class="letter-content" id="letter2">
+            <h2>What We Promise This Year</h2>
+            <p>These aren't just goals. These are the things we'll build together, one day at a time.</p>
+            <ul class="resolution-list">
+                <li><strong>1.</strong> We'll text each other good morning before anything else, even on the hardest days.</li>
+                <li><strong>2.</strong> We'll plan at least one surprise for each other every month — small, thoughtful, just because.</li>
+                <li><strong>3.</strong> We'll have one weekly video call that's not about catching up, just about existing together.</li>
+                <li><strong>4.</strong> We'll be honest when distance gets hard, and we'll never let silence replace conversation.</li>
+                <li><strong>5.</strong> We'll share one song every week that reminds us of each other.</li>
+                <li><strong>6.</strong> We'll plan our first meeting with dates, not maybes.</li>
+                <li><strong>7.</strong> We'll celebrate the small wins — your achievements, my milestones, everything that matters.</li>
+                <li><strong>8.</strong> We'll stop apologizing for wanting each other's time. It's not needy. It's love.</li>
+                <li><strong>9.</strong> We'll write letters (real or digital) whenever words feel too big for texts.</li>
+                <li><strong>10.</strong> We'll remember this: we're not waiting for life to start. This is it. This is us. And it counts.</li>
+            </ul>
+        </div>
+
+        <!-- Letter 3: Shared Aims & Dreams -->
+        <div class="letter-envelope" data-letter="3">
+            <div class="envelope locked" onclick="openLetter(3)">
+                <div class="lock-icon">🔒</div>
+                <div class="envelope-icon">💌</div>
+                <div class="envelope-title">Our Shared Aims & Dreams</div>
+                <div class="envelope-subtitle">Locked until previous letter is opened</div>
+            </div>
+        </div>
+
+        <div class="letter-content" id="letter3">
+            <h2>The Things We'll Do Together</h2>
+            <p>Not someday. Soon.</p>
+            <p>
+                <strong>Our first meeting</strong> — I've imagined it a hundred different ways. The airport, a café, a park bench. But the location doesn't matter. What matters is that moment when distance finally collapses, and we're just... there. Together. Real.
+            </p>
+            <p>
+                <strong>Our first photo</strong> — No poses. No filters. Just us, smiling because we can't believe this is finally happening. That photo will mean more than every single picture I've ever taken in my life.
+            </p>
+            <p>
+                <strong>Coffee dates</strong> — I want to sit across from you in some quiet corner, watching you talk about things you love. I want to know what you look like when you're thinking. I want to steal sips from your cup.
+            </p>
+            <p>
+                <strong>Long walks with nowhere to be</strong> — Just us, walking slowly, talking about everything and nothing. Your hand in mine. No hurry. No goodbyes at the end.
+            </p>
+            <p>
+                <strong>Laughter that fills the room</strong> — I want to hear it. Not through a phone. Right there. I want to be the reason you laugh like that.
+            </p>
+            <p>
+                <strong>Quiet moments</strong> — The ones where we don't need to talk. Where we just exist in the same space, and that's enough. Those are the ones I dream about most.
+            </p>
+        </div>
+
+        <!-- NEW FEATURE: Open When Vault -->
+        <div style="margin: 60px 0; text-align: center;">
+            <h3 style="color: #e8d5ff; margin-bottom: 20px;">Save these for a rainy day...</h3>
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <button class="pill-btn" onclick="alert('I love you. I love you. I love you. (Read that until you believe it.)')">Open when you miss me</button>
+                <button class="pill-btn" onclick="alert('Take a deep breath. You are doing amazing. I am so proud of you, Siddhartha.')">Open when you're stressed</button>
+                <button class="pill-btn" onclick="alert('Go look in the mirror. That is the face of the man I adore. Smile for me?')">Open when you feel insecure</button>
+            </div>
+        </div>
+
+        <!-- Letter 4: Moments We Haven't Lived Yet -->
+        <div class="letter-envelope" data-letter="4">
+            <div class="envelope locked" onclick="openLetter(4)">
+                <div class="lock-icon">🔒</div>
+                <div class="envelope-icon">💌</div>
+                <div class="envelope-title">Moments We Haven't Lived Yet (But Will)</div>
+                <div class="envelope-subtitle">Locked until previous letter is opened</div>
+            </div>
+        </div>
+
+        <div class="letter-content" id="letter4">
+            <h2>The Memories Waiting For Us</h2>
+            <p style="font-style: italic; color: #8b4789; text-align: center;">
+                These haven't happened yet. But they will. I know they will.
+            </p>
+            
+            <div class="image-gallery">
+                <div class="gallery-item" onclick="revealImage(this)">
+                    <div class="placeholder-icon">🌙</div>
+                    <div class="gallery-caption">Same moon. Different places. Not for long.</div>
+                </div>
+                <div class="gallery-item" onclick="revealImage(this)">
+                    <div class="placeholder-icon">☕</div>
+                    <div class="gallery-caption">Someday, this table won't be empty.</div>
+                </div>
+                <div class="gallery-item" onclick="revealImage(this)">
+                    <div class="placeholder-icon">✨</div>
+                    <div class="gallery-caption">Two cups. Two hearts. One story.</div>
+                </div>
+                <div class="gallery-item" onclick="revealImage(this)">
+                    <div class="placeholder-icon">🛤️</div>
+                    <div class="gallery-caption">This road leads to you.</div>
+                </div>
+            </div>
+
+            <p style="margin-top: 40px;">
+                Holding your hand for the first time.<br>
+                Hearing your voice without a delay.<br>
+                Falling asleep knowing you're close.<br>
+                Waking up and not missing you for the first time in months.<br>
+                <br>
+                Dancing in the kitchen to no music.<br>
+                Fighting over what to watch and laughing halfway through.<br>
+                Sitting in comfortable silence because we don't need to fill every moment with words.<br>
+                <br>
+                These moments don't exist yet, Siddhartha.<br>
+                But they're already ours.
+            </p>
+        </div>
+
+        <!-- Letter 5: New Year Promise -->
+        <div class="letter-envelope" data-letter="5">
+            <div class="envelope locked" onclick="openLetter(5)">
+                <div class="lock-icon">🔒</div>
+                <div class="envelope-icon">💌</div>
+                <div class="envelope-title">My New Year Promise</div>
+                <div class="envelope-subtitle">Locked until previous letter is opened</div>
+            </div>
+        </div>
+
+        <div class="letter-content" id="letter5">
+            <h2>What I Promise You</h2>
+            <p>
+                I promise that this year, I will love you louder. Not in grand gestures or perfect words, but in the everyday things. In the texts that say "I'm thinking of you." In the calls that don't have a reason except that I wanted to hear your voice. In the patience when things get hard and the belief that we'll figure it out together.
+            </p>
+            <p>
+                I promise I'll plan our first meeting with you. Real dates, real tickets, real plans. No more "someday." Just... "this day."
+            </p>
+            <p>
+                I promise I'll celebrate you — your wins, your dreams, the little things you think don't matter but do. Because you matter, Siddhartha. Everything about you matters to me.
+            </p>
+            <p>
+                I promise I'll be the kind of person you never have to wonder about. You'll always know where you stand with me. Right here. In my heart. In my plans. In my future.
+            </p>
+            <p>
+                And I promise that no matter how long this distance lasts, it won't change how I feel. Because loving you isn't something I do when it's easy. It's something I do because it's you.
+            </p>
+        </div>
+
+        <!-- Letter 6: Closing Message -->
+        <div class="letter-envelope" data-letter="6">
+            <div class="envelope locked" onclick="openLetter(6)">
+                <div class="lock-icon">🔒</div>
+                <div class="envelope-icon">💌</div>
+                <div class="envelope-title">Before We Begin Again</div>
+                <div class="envelope-subtitle">Locked until previous letter is opened</div>
+            </div>
+        </div>
+
+        <div class="letter-content" id="letter6">
+            <h2>One Last Thing</h2>
+            <p>
+                Siddhartha, you're not someone I settled for because of distance. You're not someone I'm with "for now." You're not a placeholder until something easier comes along.
+            </p>
+            <p>
+                You're the person I choose when I'm tired, when I'm happy, when I'm scared, when I'm dreaming. You're the name I think of when I imagine my future. You're the voice I want to hear at the end of a long day. You're the person I want standing next to me when life gets good, and the person I want holding my hand when it doesn't.
+            </p>
+            <p>
+                This distance? It's temporary. But you and me? We're not.
+            </p>
+            <p>
+                So this New Year, I'm not wishing for things to be easier. I'm wishing for us to keep being this — honest, patient, certain. Because we already have something most people spend their whole lives looking for.
+            </p>
+            <p>
+                We have each other. And that's everything.
+            </p>
+            <p style="margin-top: 50px; font-size: 1.3rem; text-align: center; color: #8b4789;">
+                Happy New Year, my love.<br>
+                Here's to the year we stop being long distance.<br>
+                Here's to us.
+            </p>
+            <div class="signature" style="margin-top: 60px;">
+                Forever yours,<br>
+                Kashish 💫
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW FEATURE: Hold My Hand Section -->
+    <div class="touch-section" style="text-align: center; margin: 100px 0; padding-bottom: 50px;">
+        <p style="color: #c9b3ff; margin-bottom: 20px; font-style: italic;">
+            Since I can't hold your hand yet...<br>press and hold this thumbprint.
+        </p>
+        <div class="fingerprint-btn" id="touchBtn">
+            <span style="font-size: 3rem;">👆</span>
+        </div>
+        <div id="touchText" style="opacity: 0; transition: opacity 1s; margin-top: 20px; color: #ff6b9d;">
+            I'm holding it right back. Can you feel that?
+        </div>
+    </div>
+
+    <!-- Final Frame (appears after all letters opened) -->
+    <div class="final-frame" id="finalFrame">
+        <div class="empty-frame">
+            <div class="placeholder-icon" style="font-size: 6rem;">📷</div>
+        </div>
+        <div class="frame-text">
+            This frame waits for the day we stop being long distance.
+        </div>
+    </div>
+
+    <script>
+        // Create starfield
+        const starfield = document.getElementById('starfield');
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starfield.appendChild(star);
+        }
+
+        // NEW FEATURE: Create S + K Constellation
+        const constellation = [
+            // 'S'
+            {x: 10, y: 20}, {x: 12, y: 18}, {x: 15, y: 18}, {x: 12, y: 22}, {x: 15, y: 22}, {x: 15, y: 24}, {x: 12, y: 24},
+            // '+'
+            {x: 20, y: 21}, {x: 22, y: 21}, {x: 21, y: 19}, {x: 21, y: 23},
+            // 'K'
+            {x: 28, y: 18}, {x: 28, y: 24}, {x: 32, y: 18}, {x: 29, y: 21}, {x: 32, y: 24}
+        ];
+
+        constellation.forEach(point => {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = point.x + '%';
+            star.style.top = point.y + '%';
+            star.style.width = '3px';
+            star.style.height = '3px';
+            star.style.background = '#ff6b9d'; // Subtle pink tint
+            star.style.boxShadow = '0 0 5px #ff6b9d';
+            star.style.opacity = '0.8';
+            starfield.appendChild(star);
+        });
+
+        // Create floating hearts
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.className = 'particle heart-particle';
+            heart.textContent = ['❤️', '💕', '💖', '✨'][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.bottom = '0';
+            heart.style.fontSize = (Math.random() * 10 + 10) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }, 3000);
+
+        // Music control
+        const music = document.getElementById('bgMusic');
+        const musicTrigger = document.getElementById('musicTrigger');
+        let musicStarted = false;
+
+        musicTrigger.addEventListener('click', () => {
+            if (!musicStarted) {
+                music.play();
+                musicTrigger.classList.add('playing');
+                musicTrigger.textContent = '🎵 Playing...';
+                musicStarted = true;
+            } else {
+                if (music.paused) {
+                    music.play();
+                    musicTrigger.textContent = '🎵 Playing...';
+                } else {
+                    music.pause();
+                    musicTrigger.textContent = '▶️ Resume music';
+                }
+            }
+        });
+
+        // Letter system
+        let currentLetter = 0;
+
+        function openLetter(letterNum) {
+            const envelope = document.querySelector(`[data-letter="${letterNum}"] .envelope`);
+            if (envelope.classList.contains('locked')) return;
+
+            // Envelope animation
+            createBurst(envelope);
+            playSound('open');
+
+            // Show letter content
+            document.getElementById(`letter${letterNum}`).classList.add('active');
+            envelope.style.display = 'none';
+
+            // Unlock next letter
+            currentLetter = letterNum;
+            const nextLetter = document.querySelector(`[data-letter="${letterNum + 1}"]`);
+            if (nextLetter) {
+                setTimeout(() => {
+                    nextLetter.querySelector('.envelope').classList.remove('locked');
+                    nextLetter.querySelector('.envelope-subtitle').textContent = 'Click to open';
+                    nextLetter.querySelector('.lock-icon').textContent = '✨';
+                }, 800);
+            } else {
+                // All letters opened, show final frame
+                setTimeout(() => {
+                    document.getElementById('finalFrame').classList.add('active');
+                    document.getElementById('finalFrame').scrollIntoView({ behavior: 'smooth' });
+                }, 1500);
+            }
+
+            // Scroll to letter
+            setTimeout(() => {
+                document.getElementById(`letter${letterNum}`).scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 100);
+        }
+
+        // Create particle burst
+        function createBurst(element) {
+            const rect = element.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.textContent = ['✨', '💫', '⭐', '💖'][Math.floor(Math.random() * 4)];
+                sparkle.style.left = centerX + 'px';
+                sparkle.style.top = centerY + 'px';
+                sparkle.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                
+                const angle = (Math.PI * 2 * i) / 20;
+                const distance = Math.random() * 100 + 50;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                sparkle.style.setProperty('--tx', tx + 'px');
+                sparkle.style.setProperty('--ty', ty + 'px');
+                
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 800);
+            }
+        }
+
+        // Sound effects
+        function playSound(type) {
+            const sounds = {
+                'open': [440, 554.37, 659.25],
+                'click': [880]
+            };
+            
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            sounds[type].forEach((freq, i) => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                oscillator.frequency.value = freq;
+                oscillator.type = 'sine';
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                oscillator.start(audioContext.currentTime + i * 0.1);
+                oscillator.stop(audioContext.currentTime + 0.3 + i * 0.1);
+            });
+        }
+
+        // Floating hearts click
+        document.querySelectorAll('.floating-heart').forEach(heart => {
+            heart.addEventListener('click', function(e) {
+                createBurst(this);
+                playSound('click');
+            });
+        });
+
+        // Message in bottle
+        document.getElementById('bottleIcon').addEventListener('click', function() {
+            document.getElementById('bottleMessage').classList.add('active');
+            createBurst(this);
+            playSound('open');
+        });
+
+        function closeBottle() {
+            document.getElementById('bottleMessage').classList.remove('active');
+        }
+
+        // Gallery reveal
+        function revealImage(element) {
+            element.classList.add('revealed');
+            createBurst(element);
+            playSound('click');
+        }
+
+        // NEW FEATURE: Hold My Hand Logic
+        const touchBtn = document.getElementById('touchBtn');
+        const touchText = document.getElementById('touchText');
+
+        ['mousedown', 'touchstart'].forEach(evt => 
+            touchBtn.addEventListener(evt, (e) => {
+                e.preventDefault(); // Prevent scrolling on touch
+                touchBtn.classList.add('holding');
+                touchText.style.opacity = '1';
+                // Haptic feedback if available (mobile)
+                if (navigator.vibrate) navigator.vibrate([50, 200, 50, 200]); 
+            })
+        );
+
+        ['mouseup', 'mouseleave', 'touchend'].forEach(evt => 
+            touchBtn.addEventListener(evt, () => {
+                touchBtn.classList.remove('holding');
+                touchText.style.opacity = '0';
+            })
+        );
+
+        // Auto-start music on first interaction
+        let firstInteraction = true;
+        document.addEventListener('click', function() {
+            if (firstInteraction && !musicStarted) {
+                music.play().catch(() => {});
+                musicTrigger.classList.add('playing');
+                musicTrigger.textContent = '🎵 Playing...';
+                musicStarted = true;
+                firstInteraction = false;
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
+
