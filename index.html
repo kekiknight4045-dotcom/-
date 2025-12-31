@@ -617,7 +617,140 @@
                 font-size: 12px;
                 padding: 12px 20px;
             }
-        }
+        } 
+        /* --- ENHANCED BOTTLE CSS --- */
+.galaxy-bottle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2000;
+    animation: bottleFloat 4s ease-in-out infinite;
+    transition: transform 0.3s ease, background 0.3s;
+}
+
+.galaxy-bottle:hover {
+    transform: scale(1.1) rotate(10deg);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.bottle-icon {
+    font-size: 30px;
+    filter: drop-shadow(0 0 5px rgba(255, 214, 232, 0.8));
+}
+
+.bottle-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 107, 157, 0.4);
+    animation: glowPulse 2s infinite;
+}
+
+@keyframes bottleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Modal Overlay */
+.bottle-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 26, 46, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.bottle-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Glass Card */
+.bottle-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.bottle-overlay.active .bottle-card {
+    transform: translateY(0);
+}
+
+.bottle-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.bottle-close:hover {
+    color: #ff6b9d;
+}
+
+.bottle-header h3 {
+    font-family: 'Georgia', serif;
+    color: #ffd6e8;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+}
+
+.bottle-body p {
+    color: #e8d5ff;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.highlight-text {
+    color: #c9b3ff !important;
+    font-style: italic;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(201, 179, 255, 0.3);
+}
+
+.bottle-decoration {
+    font-size: 24px;
+    margin-top: 20px;
+    animation: twinkle 2s infinite;
+}
+
     </style>
 </head>
 <body>
@@ -682,7 +815,7 @@
         <div class="letter-content" id="letter1">
             <h2>My Siddhartha,</h2>
             <p>
-                I'm writing this in the space between what we are now and what we'll become. And I need you to know something — you've changed everything for me. Not in loud, obvious ways, but in the quiet ones. The way I think about tomorrow. The way I smile at my phone. The way distance stopped feeling like an ending and started feeling like just... waiting.
+                I'm writing this in the space between what we are now and what we'll become. And I need you to know something you've changed everything for me. Not in loud, obvious ways, but in the quiet ones. The way I think about tomorrow. The way I smile at my phone. The way distance stopped feeling like an ending and started feeling like just... waiting.
             </p>
             <p>
                 I know we haven't stood next to each other yet. I know we haven't taken a single photograph together. But my cutie patotie , I've memorized the sound of your voice. I've learned the rhythm of your thoughts. I know what makes you laugh, what makes you go quiet, what makes you feel like yourself. And that? That feels more real than any picture ever could.
@@ -775,7 +908,7 @@
 
         <!-- NEW FEATURE: Open When Vault & Prediction -->
         <div style="margin: 60px 0; text-align: center;">
-            <h3 style="color: #e8d5ff; margin-bottom: 20px;">Save these for a rainy day...</h3>
+            <h3 style="color: #e8d5ff; margin-bottom: 20px;">Save these ...</h3>
             <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px;">
                 <button class="pill-btn" onclick="alert('I love you. I love you. I fckingg love you.i love just you and only you . (Read that until you believe it.)')">Open when you miss me</button>
                 <button class="pill-btn" onclick="alert('Take a deep breath. You are doing amazing. I am so proud of you, Siddhartha.')">Open when you're stressed</button>
@@ -887,7 +1020,7 @@
                 This distance? It's temporary. But you and me? We're not.
             </p>
             <p>
-                So this New Year, I'm not wishing for things to be easier. I'm wishing for us to keep being this — honest, patient, certain. Because we already have something most people spend their whole lives looking for.
+                So this New Year, I'm not wishing for things to be easier. I'm wishing for us to keep being this honest, patient, certain. Because we already have something most people spend their whole lives looking for.
             </p>
             <p>
                 We have each other. And that's everything.
@@ -1109,7 +1242,6 @@
         // NEW FEATURE: Prediction
         function showPrediction() {
             const predictions = [
-                "In 2026, we will finally take that trip we talked about.ha mujhe pta hai aap bhul chuke hai",
                 "In 2026, I will cook you a meal that you'll actually like.",
                 "In 2026, we will have a photo of us together in this frame.",
                 "In 2026, we will laugh until our stomachs hurt in the same room."
@@ -1156,7 +1288,38 @@
                 musicStarted = true;
                 firstInteraction = false;
             }
-        }, { once: true });
+        }, { once: true }); 
+        /* --- ENHANCED BOTTLE JS --- */
+function toggleBottle() {
+    const overlay = document.getElementById('bottleOverlay');
+    overlay.classList.toggle('active');
+    
+    // Add a nice sound effect if you have one, or just silent visual
+    if (overlay.classList.contains('active')) {
+        createBurst(document.querySelector('.galaxy-bottle')); // Reuses your existing burst effect!
+    }
+}
     </script>
+<!-- Enhanced Message in a Bottle -->
+<div class="galaxy-bottle" onclick="toggleBottle()">
+    <div class="bottle-icon">🍾</div>
+    <div class="bottle-glow"></div>
+</div>
+
+<div class="bottle-overlay" id="bottleOverlay">
+    <div class="bottle-card">
+        <div class="bottle-close" onclick="toggleBottle()">✕</div>
+        <div class="bottle-header">
+            <h3>A Stardust Secret...</h3>
+        </div>
+        <div class="bottle-body">
+            <p>I've already imagined us walking together in rain. I've already heard your laugh echo in my favorite café. I've already felt your hand in mine on streets we haven't visited yet.</p>
+            <br>
+            <p class="highlight-text">You're not just my future, Siddhartha.</p>
+            <p class="highlight-text">You're my present that hasn't arrived yet.</p>
+        </div>
+        <div class="bottle-decoration">✨</div>
+    </div>
+</div>
 </body>
 </html>
