@@ -539,7 +539,7 @@
             }
         }
 
-        /* NEW STYLES: Open When Vault & Touch Button */
+        /* New Year Creative Styles */
         .pill-btn {
             padding: 12px 25px;
             border-radius: 30px;
@@ -587,6 +587,14 @@
             60% { transform: scale(0.95); }
         }
 
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .title-page h1 {
@@ -621,9 +629,9 @@
         Tap to play the song I associate with you 🎧
     </div>
 
-    <!-- UPDATED: Music file with single extension -->
+    <!-- UPDATED: Standard music filename -->
     <audio id="bgMusic" loop>
-        <source src="mann.mp3" type="audio/mpeg">
+        <source src="music.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Floating Hearts -->
@@ -658,6 +666,7 @@
                 This is a promise wrapped in stardust.<br>
                 This is me saying: I'm here, and I'm not going anywhere.
             </p>
+            <div id="countdown" style="margin-top: 20px; font-size: 1.2rem; color: #ff6b9d; font-weight: bold;"></div>
             <div class="scroll-hint">↓ Open the letters below ↓</div>
         </div>
 
@@ -753,14 +762,17 @@
             </p>
         </div>
 
-        <!-- NEW FEATURE: Open When Vault -->
+        <!-- NEW FEATURE: Open When Vault & Prediction -->
         <div style="margin: 60px 0; text-align: center;">
             <h3 style="color: #e8d5ff; margin-bottom: 20px;">Save these for a rainy day...</h3>
-            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px;">
                 <button class="pill-btn" onclick="alert('I love you. I love you. I love you. (Read that until you believe it.)')">Open when you miss me</button>
                 <button class="pill-btn" onclick="alert('Take a deep breath. You are doing amazing. I am so proud of you, Siddhartha.')">Open when you're stressed</button>
                 <button class="pill-btn" onclick="alert('Go look in the mirror. That is the face of the man I adore. Smile for me?')">Open when you feel insecure</button>
             </div>
+            
+            <h3 style="color: #e8d5ff; margin-bottom: 20px;">🔮 Our 2026 Prediction</h3>
+            <button class="pill-btn" style="background: linear-gradient(45deg, #ff6b9d, #8b4789);" onclick="showPrediction()">Click to reveal our future</button>
         </div>
 
         <!-- Letter 4: Moments We Haven't Lived Yet -->
@@ -874,6 +886,12 @@
                 Here's to the year we stop being long distance.<br>
                 Here's to us.
             </p>
+            
+            <!-- NEW FEATURE: Firework Button -->
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="pill-btn" onclick="launchFireworks()">🎆 Celebrate Us</button>
+            </div>
+
             <div class="signature" style="margin-top: 60px;">
                 Forever yours,<br>
                 Kashish 💫
@@ -916,14 +934,11 @@
             starfield.appendChild(star);
         }
 
-        // NEW FEATURE: Create S + K Constellation
+        // NEW FEATURE: S + K Constellation
         const constellation = [
-            // 'S'
-            {x: 10, y: 20}, {x: 12, y: 18}, {x: 15, y: 18}, {x: 12, y: 22}, {x: 15, y: 22}, {x: 15, y: 24}, {x: 12, y: 24},
-            // '+'
-            {x: 20, y: 21}, {x: 22, y: 21}, {x: 21, y: 19}, {x: 21, y: 23},
-            // 'K'
-            {x: 28, y: 18}, {x: 28, y: 24}, {x: 32, y: 18}, {x: 29, y: 21}, {x: 32, y: 24}
+            {x: 10, y: 20}, {x: 12, y: 18}, {x: 15, y: 18}, {x: 12, y: 22}, {x: 15, y: 22}, {x: 15, y: 24}, {x: 12, y: 24}, // S
+            {x: 20, y: 21}, {x: 22, y: 21}, {x: 21, y: 19}, {x: 21, y: 23}, // +
+            {x: 28, y: 18}, {x: 28, y: 24}, {x: 32, y: 18}, {x: 29, y: 21}, {x: 32, y: 24} // K
         ];
 
         constellation.forEach(point => {
@@ -933,7 +948,7 @@
             star.style.top = point.y + '%';
             star.style.width = '3px';
             star.style.height = '3px';
-            star.style.background = '#ff6b9d'; // Subtle pink tint
+            star.style.background = '#ff6b9d';
             star.style.boxShadow = '0 0 5px #ff6b9d';
             star.style.opacity = '0.8';
             starfield.appendChild(star);
@@ -980,15 +995,12 @@
             const envelope = document.querySelector(`[data-letter="${letterNum}"] .envelope`);
             if (envelope.classList.contains('locked')) return;
 
-            // Envelope animation
             createBurst(envelope);
             playSound('open');
 
-            // Show letter content
             document.getElementById(`letter${letterNum}`).classList.add('active');
             envelope.style.display = 'none';
 
-            // Unlock next letter
             currentLetter = letterNum;
             const nextLetter = document.querySelector(`[data-letter="${letterNum + 1}"]`);
             if (nextLetter) {
@@ -998,14 +1010,12 @@
                     nextLetter.querySelector('.lock-icon').textContent = '✨';
                 }, 800);
             } else {
-                // All letters opened, show final frame
                 setTimeout(() => {
                     document.getElementById('finalFrame').classList.add('active');
                     document.getElementById('finalFrame').scrollIntoView({ behavior: 'smooth' });
                 }, 1500);
             }
 
-            // Scroll to letter
             setTimeout(() => {
                 document.getElementById(`letter${letterNum}`).scrollIntoView({ 
                     behavior: 'smooth',
@@ -1014,7 +1024,7 @@
             }, 100);
         }
 
-        // Create particle burst
+        // Particle burst
         function createBurst(element) {
             const rect = element.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
@@ -1063,42 +1073,15 @@
             });
         }
 
-        // Floating hearts click
-        document.querySelectorAll('.floating-heart').forEach(heart => {
-            heart.addEventListener('click', function(e) {
-                createBurst(this);
-                playSound('click');
-            });
-        });
-
-        // Message in bottle
-        document.getElementById('bottleIcon').addEventListener('click', function() {
-            document.getElementById('bottleMessage').classList.add('active');
-            createBurst(this);
-            playSound('open');
-        });
-
-        function closeBottle() {
-            document.getElementById('bottleMessage').classList.remove('active');
-        }
-
-        // Gallery reveal
-        function revealImage(element) {
-            element.classList.add('revealed');
-            createBurst(element);
-            playSound('click');
-        }
-
-        // NEW FEATURE: Hold My Hand Logic
+        // Hold My Hand Logic
         const touchBtn = document.getElementById('touchBtn');
         const touchText = document.getElementById('touchText');
 
         ['mousedown', 'touchstart'].forEach(evt => 
             touchBtn.addEventListener(evt, (e) => {
-                e.preventDefault(); // Prevent scrolling on touch
+                e.preventDefault();
                 touchBtn.classList.add('holding');
                 touchText.style.opacity = '1';
-                // Haptic feedback if available (mobile)
                 if (navigator.vibrate) navigator.vibrate([50, 200, 50, 200]); 
             })
         );
@@ -1110,7 +1093,47 @@
             })
         );
 
-        // Auto-start music on first interaction
+        // NEW FEATURE: Prediction
+        function showPrediction() {
+            const predictions = [
+                "In 2026, we will finally take that trip we talked about.",
+                "In 2026, I will cook you a meal that you'll actually like.",
+                "In 2026, we will have a photo of us together in this frame.",
+                "In 2026, we will laugh until our stomachs hurt in the same room."
+            ];
+            alert("🔮 Prediction: " + predictions[Math.floor(Math.random() * predictions.length)]);
+        }
+
+        // NEW FEATURE: Fireworks
+        function launchFireworks() {
+            for(let i=0; i<30; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight;
+                    createBurst({getBoundingClientRect: () => ({left: x, top: y, width:0, height:0})});
+                    playSound('open');
+                }, i * 100);
+            }
+        }
+
+        // NEW FEATURE: Countdown
+        function updateCountdown() {
+            const now = new Date();
+            const newYear = new Date(now.getFullYear() + 1, 0, 1);
+            const diff = newYear - now;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('countdown').textContent = `New Year Countdown: ${days}d ${hours}h left ❤️`;
+            } else {
+                document.getElementById('countdown').textContent = "Happy New Year My Love! 🎉";
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Auto-start music logic
         let firstInteraction = true;
         document.addEventListener('click', function() {
             if (firstInteraction && !musicStarted) {
@@ -1124,4 +1147,3 @@
     </script>
 </body>
 </html>
-
